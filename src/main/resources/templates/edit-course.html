@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/layout :: head}" ></head>
+
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+       <div th:replace="~{fragments/layout :: sidebar}"></div>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div th:replace="~{fragments/layout :: navbar}"></div>
+
+            <div class="container-fluid px-4 py-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>Update Course</h2>
+                    <a th:href="@{/course/list}" class="btn btn-secondary"><i class="bi bi-arrow-left me-1"></i> Back to
+                        List</a>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-white">
+                        <i class="bi bi-plus-circle me-1"></i> Course Details
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/course/{id}/update(id=${courseDto.id})}" th:object="${courseDto}" method="post">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="courseName" class="form-label">Course Name</label>
+                                    <input type="text" 
+                                    	th:field="*{courseName}"
+                                    	class="form-control" 
+                                    	id="courseName"
+                                        placeholder="e.g. Web Development" required>
+                                        
+                                         <div class="invalid-feedback"
+		                                    th:if="${#fields.hasErrors('courseName')}"
+		                                    th:errors="courseName">
+		                                </div>
+                                </div>
+                               <div class="col-md-6">
+                                <label for="code" class="form-label">Course Code</label>
+                                <input type="text" 
+                                	th:field="*{courseCode}"
+                                	class="form-control"
+                                	th:classappend="${#fields.hasErrors('courseCode')} ? 'is-invalid' : ''"
+                                    placeholder="e.g. WEB101" required>
+                                    
+                                	<div class="invalid-feedback" 
+                                		th:if="${#fields.hasErrors('courseCode')}"
+                                     	th:errors="*{courseCode}">
+                                     </div>
+                            </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="duration" class="form-label">Duration</label>
+                                    <input type="text"
+                                    	th:field="*{duration}"
+                                    	class="form-control" 
+                                    	id="duration" placeholder="e.g. 6 Months"
+                                        required>
+                                        
+                                	<div class="invalid-feedback" 
+                                		th:if="${#fields.hasErrors('duration')}"
+                                     	th:errors="*{duration}">
+                                     </div>
+                                </div>
+                                <div class="col-md-6">
+                                	<label for="fee" class="form-label">Course Fee</label>
+                                	<input type="number"
+                                		step="0.01" 
+                                		min="0" 
+                                		th:field="*{fee}" 
+                                		class="form-control"
+                                       placeholder="e.g. 1200" required>
+                                       
+                                	<div class="invalid-feedback"
+                                		th:if="${#fields.hasErrors('fee')}"
+                                     	th:errors="*{fee}">
+                                     </div>
+                            	</div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="isActive" class="form-label">Is Active</label>
+                                    <select id="isActive" class="form-select" 	th:field="*{active}" >
+                                        <option th:value="true">Yes</option>
+                                        <option th:value="False">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                            	<label for="description" class="form-label">Description</label>
+                            	<textarea class="form-control"
+                            		th:field="*{description}" 
+                            		id="description" 
+                            		rows="4"
+                                    placeholder="Enter course description...">
+                                 </textarea>
+                            	
+                            	<div class="invalid-feedback"
+                            		th:if="${#fields.hasErrors('description')}"
+                                 	th:errors="*{description}">
+                                 </div>
+                        	</div>
+                            <div class="d-flex justify-content-end">
+                                <button type="reset" class="btn btn-light me-2">Reset</button>
+                                <button type="submit" class="btn btn-primary"><i class="bi bi-save me-1"></i> Update
+                                    Course</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="~{fragments/layout :: scripts}"></div>
+</body>
+
+</html>
