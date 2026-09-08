@@ -1,10 +1,10 @@
-# Student Management System (Spring Boot + Thymeleaf + PostgreSQL)
+# CampusCore - (Spring Boot Student & Academic ERP System)
 
-A comprehensive **Spring Boot full stack project** for managing student information with clean layered architecture, form validation, pagination, sorting, and secure role-based authentication.
+A comprehensive **Spring Boot full stack project** for managing student and academic information with clean layered architecture, form validation, pagination, sorting, and secure role-based authentication.
 
 ## 📋 Overview
 
-This Student Management System is built with modern Spring Boot technologies to provide a robust platform for educational institutions. The system handles student records, faculty management, course enrollments, attendance tracking, and grade management through an intuitive web interface.
+CampusCore is a modern Spring Boot application designed to provide a robust platform for educational institutions. The system handles student records, faculty management, course enrollments, attendance tracking, and grade management through an intuitive web interface with role-based dashboards for Students, Faculty, and Heads of Department (HODs).
 
 **Note**: This repository is maintained for educational purposes and follows best practices for Spring Boot application development.
 
@@ -26,10 +26,10 @@ This Student Management System is built with modern Spring Boot technologies to 
 ## ⚙️ Configuration
 
 ### Database Setup
-1. Install PostgreSQL and create a database named `studentmanagement`
+1. Install PostgreSQL and create a database named `campuscore` (or update the name in `application.properties` if preferred)
 2. Update credentials in `src/main/resources/application.properties`:
    ```properties
-   spring.datasource.url=jdbc:postgresql://localhost:5432/studentmanagement
+   spring.datasource.url=jdbc:postgresql://localhost:5432/campuscore
    spring.datasource.username=your_postgres_username
    spring.datasource.password=your_postgres_password
    ```
@@ -58,9 +58,10 @@ $env:Path = "$env:JAVA_HOME\bin;$env:Path"
 .\mvnw.cmd spring-boot:run
 ```
 
-## Features
+## 🌟 Features
 
 ### Core Functionality
+- **Authentication & Authorization**: Secure login/logout with role-based access control (ADMIN, FACULTY, HOD, STUDENT)
 - **Student Management**: Complete CRUD operations for student records
 - **Faculty Management**: Manage instructor/professor information
 - **Course Management**: Handle course offerings and enrollment
@@ -88,16 +89,26 @@ $env:Path = "$env:JAVA_HOME\bin;$env:Path"
 ## 📂 Project Structure
 
 ```
-src/main/java/com/cwm/studentmanagement/
-├── config/             # Security and data initialization configurations
-├── controller/         # REST controllers handling HTTP requests
-├── dto/                # Data Transfer Objects for communication between layers
-├── entity/             # JPA entities representing database tables
-├── handler/            # Custom authentication success handlers
-└── repository/         # Spring Data JPA repositories
+src/main/java/com/campuscore/
+├── collegeerp/             # College ERP module (core academic entities)
+│   ├── config/             # Security and data initialization configurations
+│   ├── controller/         # REST controllers for academic modules
+│   ├── dto/                # Data Transfer Objects for academic modules
+│   ├── entity/             # JPA entities representing academic database tables
+│   ├── handler/            # Custom authentication success handlers
+│   ├── repository/         # Spring Data JPA repositories for academic modules
+│   └── service/            # Business logic services for academic modules
+└── studentmanagement/      # Student management module
+    ├── config/             # Application configurations
+    ├── controller/         # REST controllers for student management
+    ├── dto/                # Data Transfer Objects for student management
+    ├── entity/             # JPA entities representing student database tables
+    ├── exception/          # Global exception handling
+    ├── repository/         # Spring Data JPA repositories for student management
+    └── service/            # Business logic services for student management
 ```
 
-## Development Setup
+## 🚀 Development Setup
 
 ### Prerequisites
 - JDK 21 (included in the run script configuration)
@@ -116,7 +127,7 @@ src/main/java/com/cwm/studentmanagement/
 ```
 The compiled JAR will be available in the `target/` directory.
 
-## 🌐 API Endpoints
+## 🔌 API Endpoints
 
 ### Authentication
 - `GET /login` - Display login page
@@ -139,7 +150,7 @@ The compiled JAR will be available in the `target/` directory.
 - Attendance (`/attendance`)
 - Grades (`/grades`)
 
-## Testing
+## 🧪 Testing
 
 The project includes test configurations for:
 - Unit tests with JUnit 5
@@ -152,11 +163,11 @@ Run tests with:
 .\mvnw.cmd test
 ```
 
-## License
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
 - Spring Boot team for the excellent framework
 - PostgreSQL community for the robust database system
@@ -164,4 +175,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - All contributors to the open-source libraries used in this project
 
 ---
-*Last updated: August 2026*
+*Last updated: September 2026*
